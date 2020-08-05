@@ -1,0 +1,43 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Avalonia4431.ViewModels;assembly=Avalonia4431"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Avalonia4431.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Avalonia4431">
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
+  <DockPanel>
+    <ListBox DockPanel.Dock="Left"
+             Items="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+      <ListBox.DataTemplates>
+        <DataTemplate DataType="vm:TestViewModel">
+          <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="vm:DGViewModel">
+          <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+      </ListBox.DataTemplates>
+    </ListBox>
+    <ContentControl Content="{Binding SelectedItem}">
+      <ContentControl.DataTemplates>
+        <DataTemplate DataType="vm:TestViewModel">
+          <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="vm:DGViewModel">
+          <DataGrid Items="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="{Binding Name}" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </DataTemplate>
+      </ContentControl.DataTemplates>
+    </ContentControl>
+  </DockPanel>
+</Window>
