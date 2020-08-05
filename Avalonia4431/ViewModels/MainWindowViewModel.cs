@@ -13,6 +13,11 @@ namespace Avalonia4431.ViewModels
             get => _selectedItem;
             set
             {
+                if (value is TestViewModel)
+                {
+                    Debug.WriteLine("ListBox Item Changed: Test ViewModel");
+                }
+
                 if (value is DGViewModel model)
                 {
                     Debug.WriteLine("ListBox Item Changed: DG ViewModel's Selected Item: " + model.SelectedItem?.Name);
